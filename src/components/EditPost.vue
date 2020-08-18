@@ -1,7 +1,7 @@
 <template>
   <b-modal
     v-model="modalShow"
-    id="create-post-modal"
+    id="edit-post-modal"
     size="lg"
     title="Create Post"
     @hidden="hideModal"
@@ -42,7 +42,7 @@
         <b-button type="reset" variant="danger">Reset Form</b-button>
       </div>
     </b-form>
-    <b-button class="mt-3" block @click="$bvModal.hide('create-post-modal')">Cancel</b-button>
+    <b-button class="mt-3" block @click="$bvModal.hide('edit-post-modal')">Cancel</b-button>
     <CreateCategory v-if="catModalShow" v-on:hideModal="hideCatModal"></CreateCategory>
   </b-modal>
 </template>
@@ -82,7 +82,9 @@ export default {
     },
     hideCatModal(name) {
       this.form.categories = this.post.categories
-      this.form.categories.push(name)
+      if(name){
+        this.form.categories.push(name)
+      }
       this.catModalShow=false
     },
     onSubmit(evt) {

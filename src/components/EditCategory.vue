@@ -1,7 +1,7 @@
 <template>
   <b-modal
     v-model="modalShow"
-    id="create-post-modal"
+    id="edit-category-modal"
     size="lg"
     title="Create Category"
     @hidden="hideModal"
@@ -17,7 +17,7 @@
         <b-button type="submit" class="m-1" variant="primary">Update Category</b-button>
       </div>
     </b-form>
-    <b-button class="mt-3" block @click="$bvModal.hide('create-post-modal')">Cancel</b-button>
+    <b-button class="mt-3" block @click="$bvModal.hide('edit-category-modal')">Cancel</b-button>
   </b-modal>
 </template>
 
