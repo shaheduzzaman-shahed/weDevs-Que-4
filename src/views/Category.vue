@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <b-button @click="modalShow = !modalShow">Create Category</b-button>
-
+  <br><br>
     <CreateCategory v-if="modalShow" v-on:hideModal="hideModal"></CreateCategory>
     <EditCategory v-if="editModalShow" v-on:hideModal="hideModal" :category="editCategory"></EditCategory>
 

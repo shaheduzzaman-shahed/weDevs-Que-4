@@ -9,7 +9,7 @@ export default new Vuex.Store({
       {
         id: 1,
         title: 'post1',
-        description: 'post description',
+        description: 'post1 description',
         categories:  [ 'cat1', 'cat2' ]
       },
       {

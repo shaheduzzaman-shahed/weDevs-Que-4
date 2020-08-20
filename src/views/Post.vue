@@ -1,13 +1,13 @@
 <template>
   <div class="about">
     <b-button @click="modalShow = !modalShow">Create Post</b-button>
-
+  <br><br>
     <CreatePost v-if="modalShow" v-on:hideModal="hideModal"></CreatePost>
     <EditPost v-if="editModalShow" v-on:hideModal="hideModal" :post="editPost"></EditPost>
     <div v-if="posts.length > 0" class="col-md-8 m-auto">
       <b-table striped hover :items="posts" :fields="fields">
         <template v-slot:cell(categories)="data">
-          <label v-for="(cat, index) in data.value" :key="index">{{cat}},</label>
+          <label v-for="(cat, index) in data.value" :key="index">{{cat}}{{data.value[index+1] ? ', ' : null}} </label>
         </template>
         <template v-slot:cell(Action)="data">
           <b-button variant="danger" @click="removePost(data.item.id)">Delete</b-button>
