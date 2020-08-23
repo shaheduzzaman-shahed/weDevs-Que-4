@@ -1,8 +1,8 @@
 <template>
   <div class="about">
-    <b-button @click="modalShow = !modalShow">Create Post</b-button>
+    <b-button @click="createModalShow = !createModalShow">Create Post</b-button>
   <br><br>
-    <CreatePost v-if="modalShow" v-on:hideModal="hideModal"></CreatePost>
+    <CreatePost v-if="createModalShow" v-on:hideModal="hideModal"></CreatePost>
     <EditPost v-if="editModalShow" v-on:hideModal="hideModal" :post="editPost"></EditPost>
     <div v-if="posts.length > 0" class="col-md-8 m-auto">
       <b-table striped hover :items="posts" :fields="fields">
@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      modalShow: false,
+      createModalShow: false,
       editModalShow: false,
       fields: ["title", "description", "categories", "Action"],
       posts: [],
@@ -44,11 +44,24 @@ export default {
 
   methods: {
     removePost(id) {
-      this.$store.dispatch("deletePost", id);
+        this.$bvModal.msgBoxConfirm('Are you sure you want to Delete?',{
+          title: 'Confirm Delete!',
+          okVariant: 'danger',
+          okTitle: 'YES',
+        })
+          .then(value => {
+             value ?
+            this.$store.dispatch("deletePost", id)
+            : null
+          })
+          .catch(err => {
+            console.log(err)
+          })
     },
     hideModal() {
       this.modalShow = false;
-      this.editModalShow = false
+      this.editModalShow = false,
+      this.createModalShow = false
     },
     editModal(post){
       this.editModalShow = !this.editModalShow;

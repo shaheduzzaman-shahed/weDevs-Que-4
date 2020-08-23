@@ -45,7 +45,19 @@ export default {
 
   methods: {
     removeCategory(id) {
-      this.$store.dispatch("deleteCategory", id);
+       this.$bvModal.msgBoxConfirm('Are you sure you want to Delete?',{
+          title: 'Confirm Delete!',
+          okVariant: 'danger',
+          okTitle: 'YES',
+        })
+          .then(value => {
+            value ?
+            this.$store.dispatch("deleteCategory", id)
+            : null
+          })
+          .catch(err => {
+            console.log(err)
+          })
     },
     hideModal() {
       this.modalShow = false;
